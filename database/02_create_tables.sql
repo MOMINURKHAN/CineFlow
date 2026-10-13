@@ -1,3 +1,9 @@
+DROP DATABASE IF EXISTS cineflow_db;
+
+CREATE DATABASE cineflow_db
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
 USE cineflow_db;
 
 CREATE TABLE users (
@@ -13,6 +19,16 @@ CREATE TABLE users (
 
     role ENUM('CUSTOMER', 'ADMIN')
         NOT NULL DEFAULT 'CUSTOMER',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE cinemas (
+    cinema_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    name VARCHAR(100) NOT NULL,
+
+    address VARCHAR(255) NOT NULL,
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
