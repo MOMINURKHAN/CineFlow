@@ -85,3 +85,52 @@ CREATE TABLE movies (
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE showtimes (
+    showtime_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    movie_id INT NOT NULL,
+
+    hall_id INT NOT NULL,
+
+    show_date DATE NOT NULL,
+
+    start_time TIME NOT NULL,
+
+    end_time TIME NOT NULL,
+
+    ticket_price DECIMAL(8,2) NOT NULL,
+
+    FOREIGN KEY (movie_id)
+        REFERENCES movies(movie_id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (hall_id)
+        REFERENCES halls(hall_id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE bookings (
+    booking_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    user_id INT NOT NULL,
+
+    showtime_id INT NOT NULL,
+
+    booking_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    total_amount DECIMAL(10,2) NOT NULL,
+
+    booking_status ENUM('PENDING','CONFIRMED','CANCELLED')
+        DEFAULT 'PENDING',
+
+    qr_token VARCHAR(255) UNIQUE,
+
+    FOREIGN KEY (user_id)
+        REFERENCES users(user_id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (showtime_id)
+        REFERENCES showtimes(showtime_id)
+        ON DELETE CASCADE
+);
