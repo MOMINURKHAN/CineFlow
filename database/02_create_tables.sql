@@ -134,3 +134,21 @@ CREATE TABLE bookings (
         REFERENCES showtimes(showtime_id)
         ON DELETE CASCADE
 );
+
+CREATE TABLE booking_seats (
+    booking_seat_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    booking_id INT NOT NULL,
+
+    seat_id INT NOT NULL,
+
+    FOREIGN KEY (booking_id)
+        REFERENCES bookings(booking_id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (seat_id)
+        REFERENCES seats(seat_id)
+        ON DELETE CASCADE,
+
+    UNIQUE (booking_id, seat_id)
+);
