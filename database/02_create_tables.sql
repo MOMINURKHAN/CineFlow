@@ -47,3 +47,41 @@ CREATE TABLE halls (
         REFERENCES cinemas(cinema_id)
         ON DELETE CASCADE
 );
+
+CREATE TABLE seats (
+    seat_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    hall_id INT NOT NULL,
+
+    row_label CHAR(1) NOT NULL,
+
+    seat_number INT NOT NULL,
+
+    FOREIGN KEY (hall_id)
+        REFERENCES halls(hall_id)
+        ON DELETE CASCADE,
+
+    UNIQUE (hall_id, row_label, seat_number)
+);
+
+CREATE TABLE movies (
+    movie_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    title VARCHAR(150) NOT NULL,
+
+    genre VARCHAR(50),
+
+    duration_minutes INT NOT NULL,
+
+    language VARCHAR(30),
+
+    rating VARCHAR(10),
+
+    release_date DATE,
+
+    description TEXT,
+
+    poster_url VARCHAR(255),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
