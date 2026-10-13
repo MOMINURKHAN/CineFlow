@@ -17,9 +17,12 @@ ON bookings(user_id);
 CREATE INDEX idx_bookings_showtime
 ON bookings(showtime_id);
 
+/*
+This part is deleted cz it's redundent it's already in in idx_bookings_user
+
 CREATE INDEX idx_bookings_qr
 ON bookings(qr_token);
-
+*/
 CREATE INDEX idx_booking_seats_booking
 ON booking_seats(booking_id);
 
