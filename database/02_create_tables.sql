@@ -100,6 +100,8 @@ CREATE TABLE showtimes (
     end_time TIME NOT NULL,
 
     ticket_price DECIMAL(8,2) NOT NULL,
+    -- IT'S FOR ENSURING THE SHOWTIME IS UNIQUE (added later while doing indexing  in constraints)
+    UNIQUE (hall_id, show_date, start_time),
 
     FOREIGN KEY (movie_id)
         REFERENCES movies(movie_id)
