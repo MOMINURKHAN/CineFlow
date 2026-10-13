@@ -32,3 +32,18 @@ CREATE TABLE cinemas (
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE halls (
+    hall_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    cinema_id INT NOT NULL,
+
+    hall_name VARCHAR(50) NOT NULL,
+
+    total_rows INT NOT NULL,
+
+    seats_per_row INT NOT NULL,
+
+    FOREIGN KEY (cinema_id)
+        REFERENCES cinemas(cinema_id)
+        ON DELETE CASCADE
+);
